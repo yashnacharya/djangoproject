@@ -1,0 +1,343 @@
+{% extends "base.html" %}
+
+{% block content %}
+    
+    <!-- Start home -->
+    <section class="bg-half page-next-level"> 
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="text-center text-white">
+                        <h4 class="text-uppercase title mb-4">Candidate Profile</h4>
+                        <ul class="page-next d-inline-block mb-0">
+                           <li><a href="index-2.html" class="text-uppercase font-weight-bold">Home</a></li>
+                            <li>
+                                <span class="text-uppercase text-white font-weight-bold">Candidate Profile</span> 
+                            </li> 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end home -->
+
+    <!-- POST A JOB START -->
+    
+    <section class="section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="rounded shadow bg-white p-4">
+                        <div class="custom-form">
+                            <div id="message3"></div>
+                            {% if  msg %}
+                                <h4 style="color: green;" >{{msg}}</h4>
+                            {% endif %}
+                            <form method="post" action="{% url 'updateprofile' pk=request.session.id %}" name="contact-form" id="contact-form3" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <h4 class="text-dark mb-3">Update your profile :</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">First Name{{can.category}}</label>
+                                            <input id="" type="text" class="form-control resume" placeholder="" name="firstname" value="{{can.firstname}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Last Name</label>
+                                            <input id="" type="text" class="form-control resume" placeholder="" name="lastname" value="{{can.lastname}}" >
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Job Type</label>
+                                            <div class="form-button">
+                                                <select class="nice-select rounded" name="jobtype">
+                                                    <option data-display="Job Type">Job Type</option>
+                                                    {% if can.jobtype == "Full Time" %}
+                                                    <option value="Full Time" selected>Full Time</option>                                              
+                                                    {% else %}                                                                                         
+                                                    <option value="Full Time">Full Time</option>
+                                                    {% endif %}
+                                                    {% if can.jobtype == "Part Time" %}
+                                                    <option value="Part Time" selected>Part Time</option>                                              
+                                                    {% else %}  
+                                                    <option value="Part Time">Part Time</option>
+                                                    {% endif %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Job Category</label>
+                                            <div class="form-button">
+                                                <select class="nice-select rounded" name="category">
+                                                    <option data-display="Category">Category</option>
+                                                    {% if can.jobcategory == "Web Developer" %}
+                                                    <option value="Web Developer" selected>Web Developer</option>                                              
+                                                    {% else %}                                     
+                                                    <option value="Web Developer">Web Developer</option>
+                                                    {% endif %} 
+                                                    {% if can.jobcategory == "PHP Developer" %}
+                                                    <option value="PHP Developer" selected>PHP Developer</option>
+                                                    {% else %}
+                                                    <option value="PHP Developer">PHP Developer</option>
+                                                    {% endif %}      
+                                                    {% if can.jobcategory == "PHP Developer" %}
+                                                    <option value="PHP Developer" selected>PHP Developer</option>
+                                                    {% else %}
+                                                    <option value="PHP Developer">PHP Developer</option>
+                                                    {% endif %}  
+                                                    {% if can.jobcategory == "Graphic Designer" %}
+                                                    <option value="Graphic Designer" selected>Graphic Designer</option>
+                                                    {% else %}
+                                                    <option value="Graphic Designer">Graphic Designer</option>
+                                                    {% endif %}                                                            
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">City</label>
+                                            <input id="city" type="text" class="form-control resume" placeholder="" name="city" value="{{can.city}}" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Country</label>
+                                            <input type="text" class="form-control resume" placeholder="" name="country" value="{{can.country}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">City</label>
+                                            <input id="city" type="text" class="form-control resume" placeholder="" name="state" value="{{can.state}}" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Minimum Salary</label>
+                                            <input id="minimum-salary" type="text" class="form-control resume"  name="minsalary"  value="{{can.min_salary}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Maximum Salary</label>
+                                            <input id="maximum-salary" type="text" class="form-control resume" name="maxsalary"  value="{{can.max_salary}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Education Level</label>
+                                            <div class="form-button">
+                                                <select class="nice-select rounded" name="education">
+                                                    <option data-display="Level">Level</option>
+                                                    {% if can.highestedu == "SSC" %}
+                                                    <option value="SSC" selected>SSC</option>                                              
+                                                    {% else %}                                     
+                                                    <option value="SSC">SSC</option>
+                                                    {% endif %} 
+                                                    {% if can.highestedu == "HSC" %}
+                                                    <option value="HSC" selected>HSC</option>
+                                                    {% else %}
+                                                    <option value="HSC">HSC</option>
+                                                    {% endif %}      
+                                                    {% if can.highestedu == "UG" %}
+                                                    <option value="UG" selected>UG</option>
+                                                    {% else %}
+                                                    <option value="UG">UG</option>
+                                                    {% endif %}  
+                                                    {% if can.highestedu == "PG" %}
+                                                    <option value="PG" selected>PG</option>
+                                                    {% else %}
+                                                    <option value="PG">PG</option>
+                                                    {% endif %}                                                                                                
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Year of Experience</label>
+                                            <div class="form-button">
+                                                <select class="nice-select rounded"  name="experience">
+                                                    <option data-display="Experience">Experience</option>
+                                                    {% if can.experience == "1 Year" %}
+                                                    <option value="1 Year" selected>1 Year</option>                                              
+                                                    {% else %}                                     
+                                                    <option value="1 Year">1 Year</option>
+                                                    {% endif %} 
+                                                    {% if can.experience == "2 Year" %}
+                                                    <option value="2 Year" selected>2 Year</option>
+                                                    {% else %}
+                                                    <option value="2 Year">2 Year</option>
+                                                    {% endif %}      
+                                                    {% if can.experience == "3 Year" %}
+                                                    <option value="3 Year" selected>3 Year</option>
+                                                    {% else %}
+                                                    <option value="3 Year">3 Year</option>
+                                                    {% endif %}      
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Website</label>
+                                            <input type="text" class="form-control resume" placeholder="" name="website" value="{{can.website}}" >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Email Address</label>
+                                            <input id="email-address" type="text" class="form-control resume" placeholder="" name="email" value="{{user.email}}" >
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Phone Number</label>
+                                            <input id="number" type="text" class="form-control resume" placeholder="" name="contact" value="{{can.contact}}" >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Gender{{can.gender}}</label>
+                                            <div class="form-button">
+                                                <select class="nice-select rounded" name="gender">
+                                                    <option data-display="Gender">Gender</option>
+                                                    {% if can.gender == "Male" %}
+                                                    <option value="Male" selected>Male</option>                                              
+                                                    {% else %}                                     
+                                                    <option value="Male">Male</option> 
+                                                    {% endif %} 
+                                                    {% if can.gender == "Female" %}
+                                                    <option value="Female" selected>Female</option>
+                                                    {% else %}
+                                                    <option value="Female">Female</option>
+                                                    {% endif %}                                                 
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Shift</label>
+                                            <div class="form-button">
+                                                <select class="nice-select rounded" name="shift">
+                                                    <option data-display="Shift">Shift</option>                                                    
+                                                    {% if can.shift == "Morning" %}
+                                                    <option value="Morning" selected>Morning</option>                                            
+                                                    {% else %}                                     
+                                                    <option value="Morning">Morning</option> 
+                                                    {% endif %} 
+                                                    {% if can.shift == "Evening" %}
+                                                    <option value="Evening" selected>Evening</option>
+                                                    {% else %}
+                                                    <option value="Evening">Evening</option>
+                                                    {% endif %}        
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group app-label mt-2">
+                                            <label class="text-muted">Job Description</label>
+                                            <textarea id="description" rows="6" class="form-control resume" placeholder="" name="description">{{can.jobdescription}}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item">
+                                                <div class="input-group mt-2 mb-2">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="image" value="{{can.profile_pic}}">
+                                                        <label class="custom-file-label rounded"><i class="mdi mdi-cloud-upload mr-1"></i></label>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li class="list-inline-item">
+                                                <h6 class="text-muted mb-0">Upload Images Or Documents.</h6>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12 mt-2">
+                                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- POST A JOB END -->
+
+    <!-- subscribe start -->
+    <section class="section bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-5">
+                    <div class="float-left position-relative notification-icon mr-2">
+                        <i class="mdi mdi-bell-outline text-primary"></i>
+                        <span class="badge badge-pill badge-danger">1</span>
+                    </div>
+                    <h5 class="mt-2 mb-0">Your Job Notification</h5>
+                </div>
+                <div class="col-lg-8 col-md-7 mt-4 mt-sm-0">
+                    <form>
+                        <div class="form-group mb-0">
+                            <div class="input-group mb-0">
+                                <input name="email" id="email" type="email" class="form-control" placeholder="Your email :" required="" aria-describedby="newssubscribebtn">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary submitBnt" type="submit" id="newssubscribebtn">Subscribe</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- subscribe end -->
+    {% endblock %}
