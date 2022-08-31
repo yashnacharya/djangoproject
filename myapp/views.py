@@ -2,6 +2,7 @@ from urllib import request
 from django.shortcuts import render, redirect
 from .models import *
 from random import randint
+ctfhfgtj
 
 def Indexpage(request):
     return render(request, "index.html")
