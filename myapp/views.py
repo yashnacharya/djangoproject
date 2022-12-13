@@ -2,11 +2,11 @@ from urllib import request
 from django.shortcuts import render, redirect
 from .models import *
 from random import randint
-ctfhfgtj
+
 
 def Indexpage(request):
     return render(request, "index.html")
-def SignupPage(request):
+def SignupPage(request):        
     return render(request, "signup.html")
 def LoginPage(request):
     return render(request, "login.html")
