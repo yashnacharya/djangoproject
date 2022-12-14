@@ -256,3 +256,6 @@ def CompanyDelete(request, pk):
     company = UserMaster.objects.get(pk=pk)
     company.delete()
     return redirect('companylist')
+
+
+# This is my online job seaker project
